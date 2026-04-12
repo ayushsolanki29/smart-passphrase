@@ -16,7 +16,7 @@ A lightweight, secure, and memorable passphrase generator for Node.js and the br
 ##  Install
 
 ```bash
-npm install @ayushsolanki29/smart-passphrase
+npm install smart-passphrase
 ```
 
 ---
@@ -24,7 +24,7 @@ npm install @ayushsolanki29/smart-passphrase
 ## Usage
 
 ```ts
-import { generatePassword } from "@ayushsolanki29/smart-passphrase";
+import { generatePassword } from "smart-passphrase";
 
 const password = generatePassword();
 console.log(password);
