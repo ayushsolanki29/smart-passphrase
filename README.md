@@ -3,24 +3,36 @@
 A lightweight, secure, and memorable passphrase generator for Node.js and modern browsers. Built to work smoothly in React, Next.js, Vite, and plain Node projects.
 
 ## Features
-- Human‑readable passphrases with strong randomness
-- Cryptographically secure randomness (via `crypto.getRandomValues`)
-- Works in React, Next.js, Vite, and Node 18+
-- Fully typed TypeScript API
-- Configurable casing, symbols, numbers, and word patterns
-- Custom dictionary support
+- **Memorable**: Human‑readable passphrases that are easy to type and remember.
+- **Secure**: Uses cryptographically secure randomness (via `crypto.getRandomValues`).
+- **Versatile**: Works in React, Next.js, Vite, and Node 18+.
+- **CLI Support**: Generate passwords directly from your terminal with `npx`.
+- **Zero Dependencies**: Keeps your bundle size minimal.
+- **Fully Typed**: Written in TypeScript with a complete API.
 
 ## Install
 ```bash
 npm install smart-passphrase
 ```
 
-## Quick Start
+## Quick Start (Terminal)
+Generate a passphrase instantly without installing:
+```bash
+npx smart-passphrase
+```
+
+With options:
+```bash
+npx smart-passphrase --words 4 --no-symbols
+```
+
+## Quick Start (Code)
 ```ts
 import { generatePassphrase } from "smart-passphrase";
 
 const passphrase = generatePassphrase();
 console.log(passphrase);
+// Output: SilentGOOSE^mark324
 ```
 
 ## Example Output
@@ -28,15 +40,6 @@ console.log(passphrase);
 SilentGOOSE^mark324
 BrAveTiger#run891
 quickROCKET=jump472
-```
-
-## Usage in React / Next.js / Vite
-```tsx
-import { generatePassphrase } from "smart-passphrase";
-
-export default function App() {
-  return <h2>{generatePassphrase()}</h2>;
-}
 ```
 
 ## API
@@ -71,82 +74,43 @@ const bits = entropyEstimate({ words: 4, symbols: true, numbers: true });
 ## Options
 
 ### `words`
-Number of word tokens in the passphrase.
-
-```ts
-generatePassphrase({ words: 4 });
-```
+Number of word tokens in the passphrase. Default is `3` (for medium strength).
 
 ### `numbers`
-- `true` (default) to add digits
-- `{ digits: number }` to control length
-
-```ts
-generatePassphrase({ numbers: { digits: 4 } });
-```
+- `true` (default): Adds digits.
+- `{ digits: number }`: Controls the number of digits.
+- `false`: Removes digits.
 
 ### `symbols`
-- `true` (default) to include symbols
-- `string[]` to provide your own symbol list
-
-```ts
-generatePassphrase({ symbols: ["$", "-", "_"] });
-```
+- `true` (default): Includes one random symbol.
+- `string[]`: Provide your own symbol list to pick from.
+- `false`: Removes symbols.
 
 ### `uppercaseStyle`
-Controls casing:
-
-```ts
-"none" | "random" | "title" | "upper" | "lower"
-```
-
-Example:
-```ts
-generatePassphrase({ uppercaseStyle: "title" });
-```
-
-### `separator`
-String inserted between all parts.
-
-```ts
-generatePassphrase({ separator: "-" });
-```
-
-### `unique`
-Avoid repeating words within the same passphrase.
-
-```ts
-generatePassphrase({ unique: true });
-```
+Controls casing style for the words:
+`"none" | "random" | "title" | "upper" | "lower"`
 
 ### `strength`
-Preset security tiers:
+Preset security tiers that adjust words, symbols, and digits.
 
-```ts
-"medium" | "strong" | "ultra"
-```
-
-Each tier increases words, digits, and entropy.
+| Tier | Words | Symbols | Digits | Approx. Entropy |
+| :--- | :--- | :--- | :--- | :--- |
+| `medium` | 3 | Yes | 3 | ~45-50 bits |
+| `strong` | 4 | Yes | 4 | ~60-70 bits |
+| `ultra` | 5 | Yes | 5 | ~80+ bits |
 
 ```ts
 generatePassphrase({ strength: "ultra" });
 ```
 
 ### `pattern`
-Custom order of word types.
-
+Custom order of word types. Available kinds: `"adj" | "noun" | "verb"`
 ```ts
 generatePassphrase({ pattern: ["adj", "noun", "verb"] });
 ```
 
-Available word kinds:
-```ts
-"adj" | "noun" | "verb"
-```
-
 ### `dictionary`
 Override the default word lists.
-
 ```ts
 generatePassphrase({
   dictionary: {
@@ -157,16 +121,19 @@ generatePassphrase({
 });
 ```
 
+## CLI Reference
+You can use the package as a command-line tool via `npx` or by installing it globally.
+
+| Option | Description |
+| :--- | :--- |
+| `--words <n>` | Set the number of words (default: 3) |
+| `--no-numbers` | Disable numbers |
+| `--no-symbols` | Disable symbols |
+
 ## Security Notes
 - Uses `crypto.getRandomValues` for strong randomness.
 - Requires Node 18+ or a modern browser runtime.
-- For even higher entropy, increase `words`, `digits`, or use `strength: "ultra"`.
+- The default wordlist is carefully curated to avoid offensive terms while maintaining distinctiveness.
 
 ## License
 MIT
-```
-
-If you want, I can also add:
-1. A `COPY` helper utility example
-2. A CLI usage snippet
-3. A comparison table for `strength` presets

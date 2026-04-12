@@ -1,6 +1,6 @@
-import { adjectives, nouns, verbs } from "./wordlist";
-import { applyCase, defaultSymbols, randomItem, randomNumberByDigits, secureRandomInt } from "./utils";
-import type { Dictionary, GenerateOptions, WordKind } from "./types";
+import { adjectives, nouns, verbs } from "./wordlist.js";
+import { applyCase, defaultSymbols, randomItem, randomNumberByDigits, secureRandomInt } from "./utils.js";
+import type { Dictionary, GenerateOptions, WordKind } from "./types.js";
 
 const strengthDefaults: Record<string, { words: number; symbols: boolean; digits: number }> = {
   medium: { words: 3, symbols: true, digits: 3 },

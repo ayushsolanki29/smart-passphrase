@@ -1,16 +1,14 @@
 {
   "name": "smart-passphrase",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Memorable, secure passphrase generator for web and Node.",
   "license": "MIT",
   "author": "Ayush Solanki <ayushsolanki2901@gmail.com> (https://github.com/ayushsolanki29)",
   "type": "module",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/ayushsolanki29/smart-passphrase"
   },
-
   "keywords": [
     "password",
     "passphrase",
@@ -18,29 +16,30 @@
     "security",
     "typescript"
   ],
-
+  "bin": {
+    "smart-passphrase": "./dist/cli.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/esm/index.js",
+      "import": "./dist/index.js",
       "require": "./dist/cjs/index.cjs"
     }
   },
-
   "main": "./dist/cjs/index.cjs",
-  "module": "./dist/esm/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
-
   "scripts": {
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build": "npm run build:esm && npm run build:cjs"
   },
-
   "devDependencies": {
+    "@types/node": "^25.6.0",
     "typescript": "^5.5.4"
   }
 }
