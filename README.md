@@ -1,3 +1,4 @@
+Human-readable, secure password generator for developers and CLI usage.
 # smart-passphrase
 
 A lightweight, secure, and memorable passphrase generator for Node.js and modern browsers. Built to work smoothly in React, Next.js, Vite, and plain Node projects.
@@ -6,8 +7,9 @@ A lightweight, secure, and memorable passphrase generator for Node.js and modern
 - **Memorable**: Human‑readable passphrases that are easy to type and remember.
 - **Secure**: Uses cryptographically secure randomness (via `crypto.getRandomValues`).
 - **Versatile**: Works in React, Next.js, Vite, and Node 18+.
-- **CLI Support**: Generate passwords directly from your terminal with `npx`.
-- **Zero Dependencies**: Keeps your bundle size minimal.
+- **Premium CLI**: Beautifully styled terminal output with colors and animations.
+- **Clipboard Support**: Copy passphrases instantly from the CLI.
+- **Zero Dependencies (Core)**: Only adds dependencies for the CLI tool.
 - **Fully Typed**: Written in TypeScript with a complete API.
 
 ## Install
@@ -16,14 +18,21 @@ npm install smart-passphrase
 ```
 
 ## Quick Start (Terminal)
-Generate a passphrase instantly without installing:
+Generate a passphrase instantly with a premium experience:
 ```bash
 npx smart-passphrase
 ```
 
-With options:
+**Pro Tip (Copy to clipboard):**
 ```bash
-npx smart-passphrase --words 4 --no-symbols
+npx smart-passphrase copy
+# or
+npx smart-passphrase -c
+```
+
+**Custom Strength:**
+```bash
+npx smart-passphrase --strength ultra
 ```
 
 ## Quick Start (Code)
@@ -36,11 +45,7 @@ console.log(passphrase);
 ```
 
 ## Example Output
-```
-SilentGOOSE^mark324
-BrAveTiger#run891
-quickROCKET=jump472
-```
+The CLI provides a vibrant, gradient-colored output that stands out!
 
 ## API
 
@@ -74,7 +79,7 @@ const bits = entropyEstimate({ words: 4, symbols: true, numbers: true });
 ## Options
 
 ### `words`
-Number of word tokens in the passphrase. Default is `3` (for medium strength).
+Number of word tokens in the passphrase. Default is `3`.
 
 ### `numbers`
 - `true` (default): Adds digits.
@@ -99,41 +104,23 @@ Preset security tiers that adjust words, symbols, and digits.
 | `strong` | 4 | Yes | 4 | ~60-70 bits |
 | `ultra` | 5 | Yes | 5 | ~80+ bits |
 
-```ts
-generatePassphrase({ strength: "ultra" });
-```
-
-### `pattern`
-Custom order of word types. Available kinds: `"adj" | "noun" | "verb"`
-```ts
-generatePassphrase({ pattern: ["adj", "noun", "verb"] });
-```
-
-### `dictionary`
-Override the default word lists.
-```ts
-generatePassphrase({
-  dictionary: {
-    adjectives: ["silent", "rapid"],
-    nouns: ["fox", "river"],
-    verbs: ["glide", "spark"]
-  }
-});
-```
-
 ## CLI Reference
-You can use the package as a command-line tool via `npx` or by installing it globally.
+Run `npx smart-passphrase [command] [options]` or install globally.
 
-| Option | Description |
-| :--- | :--- |
-| `--words <n>` | Set the number of words (default: 3) |
-| `--no-numbers` | Disable numbers |
-| `--no-symbols` | Disable symbols |
+### Commands
+- `[default]` - Generate a passphrase.
+- `copy` - Generate and copy to clipboard immediately.
+
+### Options
+- `-w, --words <n>` - Set the number of words (default: 3).
+- `-s, --strength <tier>` - Set tier (medium, strong, ultra).
+- `-c, --copy` - Copy generated passphrase to clipboard.
+- `-n, --no-numbers` - Disable numbers.
+- `-S, --no-symbols` - Disable symbols.
 
 ## Security Notes
 - Uses `crypto.getRandomValues` for strong randomness.
 - Requires Node 18+ or a modern browser runtime.
-- The default wordlist is carefully curated to avoid offensive terms while maintaining distinctiveness.
 
 ## License
 MIT
