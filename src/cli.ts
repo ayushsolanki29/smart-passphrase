@@ -15,9 +15,11 @@ program
   .description("Generate secure and memorable passphrases with style")
   .version("2.0.0")
   .option("-w, --words <number>", "number of words", (val) => parseInt(val), 3)
-  .option("-s, --strength <tier>", "security tier (medium, strong, ultra)", "medium")
-  .option("-n, --no-numbers", "do not include numbers")
-  .option("-S, --no-symbols", "do not include symbols")
+  .option("-s, --strength <tier>", "security tier (easy, medium, strong, ultra)", "medium")
+  .option("-n, --numbers", "include numbers")
+  .option("--no-numbers", "exclude numbers")
+  .option("-S, --symbols", "include symbols")
+  .option("--no-symbols", "exclude symbols")
   .option("-c, --copy", "copy to clipboard")
   .action(async (options) => {
     console.log("");

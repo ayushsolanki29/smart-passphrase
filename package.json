@@ -1,6 +1,6 @@
 {
   "name": "smart-passphrase",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Memorable, secure passphrase generator for web and Node.",
   "license": "MIT",
   "author": "Ayush Solanki <ayushsolanki2901@gmail.com> (https://github.com/ayushsolanki29)",

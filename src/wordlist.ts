@@ -1,8 +1,11 @@
-export const adjectives = [
-  // Original
+export const simpleAdjectives = [
   "quick", "silent", "brave", "fancy", "eager", "bright",
   "gentle", "proud", "curious", "steady", "bold", "calm",
+  "happy", "tiny", "large", "blue", "red", "green", "fast",
+  "slow", "smart", "kind", "soft", "hard"
+];
 
+export const complexAdjectives = [
   // Advanced originals
   "resilient", "ephemeral", "luminous", "tenacious", "serene",
   "voracious", "ethereal", "stoic", "audacious", "fleeting",
@@ -38,11 +41,16 @@ export const adjectives = [
   "everlasting"
 ];
 
-export const nouns = [
-  // Original
+export const adjectives = [...simpleAdjectives, ...complexAdjectives];
+
+export const simpleNouns = [
   "tiger", "goose", "rocket", "mask", "forest", "ocean",
   "ember", "comet", "cipher", "garden", "river", "mountain",
+  "cat", "dog", "bird", "tree", "star", "moon", "sun",
+  "book", "pen", "desk", "home", "road"
+];
 
+export const complexNouns = [
   // Advanced originals
   "phantom", "echo", "horizon", "sentinel", "abyss", "beacon",
   "shroud", "monolith", "specter", "harbinger", "labyrinth",
@@ -78,11 +86,15 @@ export const nouns = [
   "chronicle"
 ];
 
-export const verbs = [
-  // Original
+export const nouns = [...simpleNouns, ...complexNouns];
+
+export const simpleVerbs = [
   "run", "jump", "build", "mark", "drift", "spark",
   "forge", "glide", "shift", "trace", "craft", "sprint",
+  "walk", "sing", "read", "play", "draw", "smile"
+];
 
+export const complexVerbs = [
   // Advanced originals
   "lunge", "flicker", "shatter", "conceal", "summon", "evade",
   "descend", "ascend", "sunder", "kindle", "lurk", "surge",
@@ -116,3 +128,5 @@ export const verbs = [
   "memorialize",
   "pay homage"
 ];
+
+export const verbs = [...simpleVerbs, ...complexVerbs];

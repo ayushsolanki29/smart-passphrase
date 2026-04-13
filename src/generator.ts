@@ -1,14 +1,22 @@
-import { adjectives, nouns, verbs } from "./wordlist.js";
+import { adjectives, nouns, verbs, simpleAdjectives, simpleNouns, simpleVerbs } from "./wordlist.js";
 import { applyCase, defaultSymbols, randomItem, randomNumberByDigits, secureRandomInt } from "./utils.js";
 import type { Dictionary, GenerateOptions, WordKind } from "./types.js";
 
-const strengthDefaults: Record<string, { words: number; symbols: boolean; digits: number }> = {
-  medium: { words: 3, symbols: true, digits: 3 },
-  strong: { words: 4, symbols: true, digits: 4 },
-  ultra: { words: 5, symbols: true, digits: 5 }
+const strengthDefaults: Record<string, { words: number; symbols: boolean; numbers: boolean; digits: number; uppercaseStyle?: any; separator?: string }> = {
+  easy: { words: 3, symbols: false, numbers: true, digits: 2, uppercaseStyle: "title", separator: "-" },
+  medium: { words: 3, symbols: true, numbers: true, digits: 3 },
+  strong: { words: 4, symbols: true, numbers: true, digits: 4 },
+  ultra: { words: 5, symbols: true, numbers: true, digits: 5 }
 };
 
-function buildDictionary(overrides?: Partial<Dictionary>): Dictionary {
+function buildDictionary(overrides?: Partial<Dictionary>, strength?: string): Dictionary {
+  if (strength === "easy") {
+    return {
+      adjectives: overrides?.adjectives ?? simpleAdjectives,
+      nouns: overrides?.nouns ?? simpleNouns,
+      verbs: overrides?.verbs ?? simpleVerbs
+    };
+  }
   return {
     adjectives: overrides?.adjectives ?? adjectives,
     nouns: overrides?.nouns ?? nouns,
@@ -55,13 +63,13 @@ export function generatePassphrase(options: GenerateOptions = {}): string {
   const defaults = options.strength ? strengthDefaults[options.strength] : strengthDefaults.medium;
   const wordCount = options.words ?? defaults.words;
   const useSymbols = options.symbols ?? defaults.symbols;
-  const numbersOption = options.numbers ?? true;
-  const digits = typeof numbersOption === "object" ? numbersOption.digits ?? defaults.digits : defaults.digits;
-  const separator = options.separator ?? "";
-  const uppercaseStyle = options.uppercaseStyle ?? "random";
+  const numbersOption = options.numbers ?? defaults.numbers;
+  const digits = typeof numbersOption === "object" ? (numbersOption as any).digits ?? defaults.digits : defaults.digits;
+  const separator = options.separator ?? defaults.separator ?? "";
+  const uppercaseStyle = options.uppercaseStyle ?? defaults.uppercaseStyle ?? "random";
   const unique = options.unique ?? true;
 
-  const dictionary = buildDictionary(options.dictionary);
+  const dictionary = buildDictionary(options.dictionary, options.strength);
   const pattern = options.pattern ?? defaultPattern(wordCount);
   if (pattern.length !== wordCount) {
     throw new Error("pattern length must match words");
@@ -100,7 +108,7 @@ export function entropyEstimate(options: GenerateOptions = {}): number {
   const useSymbols = options.symbols ?? defaults.symbols;
   const numbersOption = options.numbers ?? true;
   const digits = typeof numbersOption === "object" ? numbersOption.digits ?? defaults.digits : defaults.digits;
-  const dictionary = buildDictionary(options.dictionary);
+  const dictionary = buildDictionary(options.dictionary, options.strength);
   const pattern = options.pattern ?? defaultPattern(wordCount);
 
   const sizes = pattern.map((kind) => {

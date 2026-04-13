@@ -98,11 +98,12 @@ Controls casing style for the words:
 ### `strength`
 Preset security tiers that adjust words, symbols, and digits.
 
-| Tier | Words | Symbols | Digits | Approx. Entropy |
-| :--- | :--- | :--- | :--- | :--- |
-| `medium` | 3 | Yes | 3 | ~45-50 bits |
-| `strong` | 4 | Yes | 4 | ~60-70 bits |
-| `ultra` | 5 | Yes | 5 | ~80+ bits |
+| Tier | Words | Symbols | Digits | Formatting | Approx. Entropy |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `easy` | 3 | No | 2 | Title-Case-99 | ~30-35 bits |
+| `medium` | 3 | Yes | 3 | raNDomSYmb=123 | ~45-50 bits |
+| `strong` | 4 | Yes | 4 | rAndOMWordS#5432 | ~60-70 bits |
+| `ultra` | 5 | Yes | 5 | vErYStrONgWOrDs%12345 | ~80+ bits |
 
 ## CLI Reference
 Run `npx smart-passphrase [command] [options]` or install globally.
@@ -113,10 +114,12 @@ Run `npx smart-passphrase [command] [options]` or install globally.
 
 ### Options
 - `-w, --words <n>` - Set the number of words (default: 3).
-- `-s, --strength <tier>` - Set tier (medium, strong, ultra).
+- `-s, --strength <tier>` - Set tier (easy, medium, strong, ultra).
 - `-c, --copy` - Copy generated passphrase to clipboard.
-- `-n, --no-numbers` - Disable numbers.
-- `-S, --no-symbols` - Disable symbols.
+- `-n, --numbers` - Include numbers.
+- `-N, --no-numbers` - Disable numbers.
+- `-S, --symbols` - Include symbols.
+- `-X, --no-symbols` - Disable symbols.
 
 ## Security Notes
 - Uses `crypto.getRandomValues` for strong randomness.

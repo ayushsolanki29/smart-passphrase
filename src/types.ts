@@ -1,5 +1,5 @@
 export type UppercaseStyle = "none" | "random" | "title" | "upper" | "lower";
-export type Strength = "medium" | "strong" | "ultra";
+export type Strength = "easy" | "medium" | "strong" | "ultra";
 export type WordKind = "adj" | "noun" | "verb";
 
 export interface Dictionary {
