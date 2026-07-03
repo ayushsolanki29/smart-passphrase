@@ -3,6 +3,8 @@ Human-readable, secure password generator for developers and CLI usage.
 
 A lightweight, secure, and memorable passphrase generator for Node.js and modern browsers. Built to work smoothly in React, Next.js, Vite, and plain Node projects.
 
+✨ **[See the Live Demo & Generator](https://smart-passphrase-zeta.vercel.app/)** ✨
+
 ## Features
 - **Memorable**: Human‑readable passphrases that are easy to type and remember.
 - **Secure**: Uses cryptographically secure randomness (via `crypto.getRandomValues`).
