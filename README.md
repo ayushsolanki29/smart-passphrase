@@ -1,3 +1,7 @@
+[![npm version](https://img.shields.io/npm/v/smart-passphrase)](https://www.npmjs.com/package/smart-passphrase)
+[![npm downloads](https://img.shields.io/npm/dm/smart-passphrase)](https://www.npmjs.com/package/smart-passphrase)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Node.js](https://img.shields.io/node/v/smart-passphrase)](https://nodejs.org)
 Human-readable, secure password generator for developers and CLI usage.
 # smart-passphrase
 
